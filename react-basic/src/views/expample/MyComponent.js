@@ -6,7 +6,15 @@ class MyComponent extends React.Component {
     company: 'DGWA'
   }
 
+  handleClick = (e) =>{
+    // console.log('handleClick', e);
+    this.setState({
+      company: 'DGWA Viet Nam'
+    })
+  }
+
   render() {
+    console.log('state', this.state);
     return (
       <>
         <div>
@@ -16,6 +24,8 @@ class MyComponent extends React.Component {
         <div>
           <h1>Hello, {this.state.company}</h1>
         </div>
+
+        <button onClick={(e) => this.handleClick(e)}>Click me</button>
       </>
     )
   }
