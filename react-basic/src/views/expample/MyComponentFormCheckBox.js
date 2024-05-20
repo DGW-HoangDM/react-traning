@@ -11,6 +11,7 @@ class MyComponentFormCheckBox extends React.Component {
   }
 
   handleChange = (e) =>{
+    //ES6 Destructuring
     const { name, value } = e.target;
 
     if(e.target.checked){
