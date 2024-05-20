@@ -3,6 +3,8 @@ import './App.scss';
 
 import React from 'react';
 import MyComponent from './views/expample/MyComponent';
+import MyComponentForm from './views/expample/MyComponentForm';
+import MyComponentFormCheckBox from './views/expample/MyComponentFormCheckBox';
 
 //class component
 class App extends React.Component {
@@ -24,6 +26,12 @@ class App extends React.Component {
           </a>
 
           <MyComponent name="Hoang" />
+
+          <MyComponentForm />
+          <div className="line"></div>
+          <MyComponentFormCheckBox />
+          <div className="line"></div>
+
         </header>
       </div>
     )
