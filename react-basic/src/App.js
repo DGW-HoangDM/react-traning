@@ -5,6 +5,7 @@ import React from 'react';
 import MyComponent from './views/expample/MyComponent';
 import MyComponentForm from './views/expample/MyComponentForm';
 import MyComponentFormCheckBox from './views/expample/MyComponentFormCheckBox';
+import ParentComponent from './views/expample/ParentComponent';
 
 //class component
 class App extends React.Component {
@@ -26,6 +27,10 @@ class App extends React.Component {
           </a>
 
           <MyComponent name="Hoang" />
+          <div className="line"></div>
+
+          <ParentComponent />
+          <div className="line"></div>
 
           <MyComponentForm />
           <div className="line"></div>
