@@ -2,10 +2,11 @@ import logo from './logo.svg';
 import './App.scss';
 
 import React from 'react';
-import MyComponent from './views/expample/MyComponent';
-import MyComponentForm from './views/expample/MyComponentForm';
-import MyComponentFormCheckBox from './views/expample/MyComponentFormCheckBox';
-import ParentComponent from './views/expample/ParentComponent';
+import ListTodo from './views/todos/ListTodo'
+// import MyComponent from './views/expample/MyComponent';
+// import MyComponentForm from './views/expample/MyComponentForm';
+// import MyComponentFormCheckBox from './views/expample/MyComponentFormCheckBox';
+// import ParentComponent from './views/expample/ParentComponent';
 
 //class component
 class App extends React.Component {
@@ -15,18 +16,18 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Simple TODO app with react by Hoang-DM
           </p>
-          <a
+          {/* <a
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
+          </a> */}
 
-          <MyComponent name="Hoang" />
+          {/* <MyComponent name="Hoang" />
           <div className="line"></div>
 
           <ParentComponent />
@@ -35,7 +36,10 @@ class App extends React.Component {
           <MyComponentForm />
           <div className="line"></div>
           <MyComponentFormCheckBox />
-          <div className="line"></div>
+          <div className="line"></div> */}
+
+
+          <ListTodo />
 
         </header>
       </div>
