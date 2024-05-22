@@ -22,7 +22,7 @@ class MyComponent extends React.Component {
   }
 
   render() {
-    // console.log('state', this.state);
+    
     let {isChecked} = this.state;
 
     return (

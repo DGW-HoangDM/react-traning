@@ -26,8 +26,18 @@ class ParentComponent extends React.Component {
     }));
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate', prevState, this.state);
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
   render() {
+    console.log('check render state', this.state);
     let { jobList } = this.state;
+
     return (
       <>
         <h1>Parent component</h1>
