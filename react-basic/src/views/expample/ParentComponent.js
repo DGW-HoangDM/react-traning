@@ -10,16 +10,17 @@ class ParentComponent extends React.Component {
     ],
   }
 
-  handleMessageChange = (job) => {
+  handleAddJob = (job) => {
     if (job.name !== '' && job.salary !== '') {
       this.setState({
+        //ES6 Spread Operator
         jobList: [...this.state.jobList, job]
       });
     }
   }
 
   // Method to handle removing an item
-  removeItem = (id) => {
+  handleRemoveJob = (id) => {
     this.setState(prevState => ({
       jobList: prevState.jobList.filter(item => item.id !== id)
     }));
@@ -34,7 +35,7 @@ class ParentComponent extends React.Component {
         <AddComponent
           name="This my daughter"
           age={5}
-          onMessageChange={this.handleMessageChange}
+          onHandleAddJob={this.handleAddJob}
         />
         <div>
           <ul>
@@ -43,7 +44,7 @@ class ParentComponent extends React.Component {
                 return (
                   <li key={item.id}>
                     {item.name}-{item.salary}
-                    <span onClick={() => this.removeItem(item.id)}> - X</span>
+                    <span onClick={() => this.handleRemoveJob(item.id)}> - X</span>
                   </li>
                 )
               })

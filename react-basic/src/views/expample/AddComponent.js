@@ -7,9 +7,9 @@ class AddComponent extends React.Component {
     salary: '',
   }
 
-  handleChange = (e) =>{
+  handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     this.setState({
       [name]: value
     })
@@ -17,14 +17,14 @@ class AddComponent extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    
+
     let currentJob = {
       id: Math.floor(Math.random() * 1001),
       name: this.state.jobName,
       salary: this.state.salary,
     }
     //pass data child component to parent component
-    this.props.onMessageChange(currentJob);
+    this.props.onHandleAddJob(currentJob);
 
     this.setState({
       jobName: '',
@@ -33,7 +33,7 @@ class AddComponent extends React.Component {
   }
 
   render() {
-    
+
     return (
       <>
         <form onSubmit={(e) => this.handleSubmit(e)}>
