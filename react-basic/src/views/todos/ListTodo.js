@@ -21,18 +21,12 @@ class ListTodo extends React.Component {
   }
 
   handleAddTask = (task) => {
-    // console.log('task from parent:', task);
-
-    if (task.title !== '') {
-      
-    }
-
     this.setState({
       //ES6 Spread Operator
       listTodo: [...this.state.listTodo, task]
     });
 
-    const notify = () => toast.success('Add todo success!');
+    const notify = () => toast.success('Add todo succeed!');
     notify();
   }
 
@@ -48,6 +42,9 @@ class ListTodo extends React.Component {
     this.setState({
       listTodo: currentTask
     });
+
+    const notify = () => toast.success('Delete succeed!');
+    notify();
   }
 
 
