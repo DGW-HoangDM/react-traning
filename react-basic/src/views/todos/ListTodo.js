@@ -19,6 +19,19 @@ class ListTodo extends React.Component {
     ]
   }
 
+  handleAddTask = (task) => {
+    // console.log('task from parent:', task);
+
+    if (task.title !== '') {
+      
+    }
+
+    this.setState({
+      //ES6 Spread Operator
+      listTodo: [...this.state.listTodo, task]
+    });
+  }
+
 
   render() {
     let { listTodo } = this.state;
@@ -26,7 +39,9 @@ class ListTodo extends React.Component {
     return (
       <>
         <div className="content">
-          <AddTodo />
+          <AddTodo 
+            onHandleAddTask= { this.handleAddTask}
+          />
           
           <ul className="list-group">
             {
