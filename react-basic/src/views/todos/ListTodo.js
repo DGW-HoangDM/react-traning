@@ -36,6 +36,20 @@ class ListTodo extends React.Component {
     notify();
   }
 
+  handleDeleteTask = (task) => {
+    //Option 1
+    // this.setState(prevState => ({
+    //   listTodo: prevState.listTodo.filter(item => item.id!== task)
+    // }));
+
+    //Option 2
+    let currentTask = this.state.listTodo;
+    currentTask = currentTask.filter(item => item.id !== task);
+    this.setState({
+      listTodo: currentTask
+    });
+  }
+
 
   render() {
     let { listTodo } = this.state;
@@ -56,11 +70,16 @@ class ListTodo extends React.Component {
                     <span>{todo.title}</span>
                     <div className="d-flex gap-3">
                       <button className="btn btn-info mr-3" type="button" >Edit</button>
-                      <button className="btn btn-danger" type="button" >Delete</button>
+                      <button className="btn btn-danger" type="button" onClick={ (e) => this.handleDeleteTask(todo.id)}>Delete</button>
                     </div>
                   </li>
                 )
               })
+            }
+
+            {
+              listTodo && listTodo.length === 0 &&
+              <h1>Task empty</h1>
             }
           </ul>
         </div>
