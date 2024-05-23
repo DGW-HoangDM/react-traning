@@ -2,7 +2,9 @@ import logo from './logo.svg';
 import './App.scss';
 
 import React from 'react';
-import ListTodo from './views/todos/ListTodo'
+import ListTodo from './views/todos/ListTodo';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import MyComponent from './views/expample/MyComponent';
 // import MyComponentForm from './views/expample/MyComponentForm';
 // import MyComponentFormCheckBox from './views/expample/MyComponentFormCheckBox';
@@ -42,6 +44,18 @@ class App extends React.Component {
           <ListTodo />
 
         </header>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     )
   }

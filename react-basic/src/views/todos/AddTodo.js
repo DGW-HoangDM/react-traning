@@ -1,4 +1,5 @@
 import React from 'react'
+import { toast } from 'react-toastify';
 
 class AddTodo extends React.Component {
   state = {
@@ -15,7 +16,9 @@ class AddTodo extends React.Component {
 
   handleAddTasks = (e) => {
     // check task title exists
-    if(!this.state.title){
+    if (!this.state.title) {
+      const notify = () => toast.error('Missing title!');
+      notify();
       return
     }
 
@@ -52,6 +55,8 @@ class AddTodo extends React.Component {
           />
           <button className="btn btn-primary" type="button" onClick={(e) => this.handleAddTasks(e)} >ADD</button>
         </div>
+
+        
       </div>
     )
   }
