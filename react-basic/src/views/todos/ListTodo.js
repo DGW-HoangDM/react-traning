@@ -94,6 +94,9 @@ class ListTodo extends React.Component {
 
     return (
       <>
+        <p>
+          Simple TODO app with react by Hoang-DM
+        </p>
         <div className="content">
           <AddTodo
             onHandleAddTask={this.handleAddTask}

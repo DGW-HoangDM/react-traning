@@ -3,60 +3,63 @@ import './App.scss';
 
 import React from 'react';
 import ListTodo from './views/todos/ListTodo';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import MyComponent from './views/expample/MyComponent';
 // import MyComponentForm from './views/expample/MyComponentForm';
 // import MyComponentFormCheckBox from './views/expample/MyComponentFormCheckBox';
 // import ParentComponent from './views/expample/ParentComponent';
+import NavComponent from './views/routers/NavComponent';
+import Home from './views/Home';
+import Example from './views/expample/Example';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 //class component
 class App extends React.Component {
   render() {
-    return(
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Simple TODO app with react by Hoang-DM
-          </p>
-          {/* <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a> */}
+    return (
+      <Router>
+        <div className="App">
+          <div className="App-header">
 
-          {/* <MyComponent name="Hoang" />
-          <div className="line"></div>
+            <NavComponent />
+            <div className="line"></div>
 
-          <ParentComponent />
-          <div className="line"></div>
+            <img src={logo} className="App-logo" alt="logo" />
+            
 
-          <MyComponentForm />
-          <div className="line"></div>
-          <MyComponentFormCheckBox />
-          <div className="line"></div> */}
-
-
-          <ListTodo />
-
-        </header>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </div>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/todo">
+                <ListTodo />
+              </Route>
+              <Route path="/example">
+                <Example />
+              </Route>
+            </Switch>
+          </div>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </div>
+      </Router>
     )
   }
 }
