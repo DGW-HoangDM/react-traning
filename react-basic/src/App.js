@@ -12,12 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import NavComponent from './views/routers/NavComponent';
 import Home from './views/Home';
 import Example from './views/expample/Example';
+import Topics from './views/Topics/Topics';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 //class component
@@ -43,6 +43,9 @@ class App extends React.Component {
               </Route>
               <Route path="/example">
                 <Example />
+              </Route>
+              <Route path="/topics">
+                <Topics />
               </Route>
             </Switch>
           </div>
