@@ -14,6 +14,7 @@ import Home from './views/Home';
 import Example from './views/expample/Example';
 import Topics from './views/Topics/Topics';
 import ListUsers from './views/Users/ListUsers';
+import UserDetail from './views/Users/UserDetail';
 
 import {
   BrowserRouter as Router,
@@ -48,8 +49,11 @@ class App extends React.Component {
               <Route path="/topics">
                 <Topics />
               </Route>
-              <Route path="/user">
+              <Route path="/user" exact>
                 <ListUsers />
+              </Route>
+              <Route path="/user/:id">
+                <UserDetail />
               </Route>
             </Switch>
           </div>
