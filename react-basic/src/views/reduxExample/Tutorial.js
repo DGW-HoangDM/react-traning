@@ -3,17 +3,22 @@ import { connect } from 'react-redux';
 
 class Tutorial extends React.Component {
   handleDeleteUser = (user) => {
-    console.log('handeDeleteUser', user)
+    //console.log('handleDeleteUser', user);
+    this.props.deleteUserRedux(user);
   }
+
+  handleCreateUser = () => {
+    //console.log('handleCreateUser');
+    this.props.createUser();
+  }
+
   render() {
     let users = this.props.userRedux;
 
-    console.log('check props redux', this.props.userRedux);
-    
     return (
       <>
         <h1>Hello Tutorial Redux</h1>
-        <ul className="content list-group list-group-flush">
+        <ul className="content list-group list-group-flush mb-3">
           {
             users && users.length > 0 &&
             users.map((user, index) => {
@@ -26,6 +31,7 @@ class Tutorial extends React.Component {
             })
           }
         </ul>
+        <button className="btn btn-primary" type="button" onClick={() => this.handleCreateUser()}>Add user</button>
         <div className="line"></div>
       </>
     )
@@ -33,8 +39,19 @@ class Tutorial extends React.Component {
 }
 
 // Map state to props
-const mapStateToProps = (state) => ({
-  userRedux: state.users
-});
+const mapStateToProps = (state) => {
+  return {
+    userRedux: state.users
+  }
+};
 
-export default connect(mapStateToProps)(Tutorial);
+// Map dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteUserRedux: (userDelete) => dispatch({ type: 'DELETE_USER', payload: userDelete }),
+    createUser: () => dispatch({ type: 'CREATE_USER'})
+  }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);
