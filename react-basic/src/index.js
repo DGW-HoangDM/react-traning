@@ -7,6 +7,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//redux config
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './store/reducers/rootReducer';
+
+const reduxStore = createStore(rootReducer);
+
 //React version 18
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -18,7 +25,9 @@ import reportWebVitals from './reportWebVitals';
 //React version 17
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={reduxStore}>
+      <App />
+    </Provider>,
   </React.StrictMode>,
   document.getElementById('root')
 );
