@@ -39,6 +39,9 @@ class NavComponent extends React.Component {
                 <li className="nav-item">
                   <NavLink activeClassName="active" className="nav-link" to="/user">Users</NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink activeClassName="active" className="nav-link" to="/tutorial">Tutorial</NavLink>
+                </li>
               </ul>
             </div>
           </div>

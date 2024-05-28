@@ -15,6 +15,7 @@ import Example from './views/expample/Example';
 import Topics from './views/Topics/Topics';
 import ListUsers from './views/Users/ListUsers';
 import UserDetail from './views/Users/UserDetail';
+import Tutorial from './views/reduxExample/Tutorial';
 
 import {
   BrowserRouter as Router,
@@ -54,6 +55,9 @@ class App extends React.Component {
               </Route>
               <Route path="/user/:id">
                 <UserDetail />
+              </Route>
+              <Route path="/tutorial" exact>
+                <Tutorial />
               </Route>
             </Switch>
           </div>
