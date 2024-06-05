@@ -30,10 +30,6 @@ code {
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -49,4 +45,10 @@ code {
   to {
     transform: rotate(360deg);
   }
+}
+
+.content {
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: left;
 }

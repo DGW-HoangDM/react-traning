@@ -13,7 +13,7 @@ const MyComponent = (prop) => {
   );
   // console.log('listJob', listJob);
 
-
+  // HOOK for lifecycle
   useEffect(
     () => {
       console.log('call me useEffect');
