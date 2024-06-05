@@ -1,55 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AddTodo from './AddTodo';
 import { toast } from 'react-toastify';
 
-class ListTodo extends React.Component {
-  state = {
-    listTodo: [
-      {
-        id: 'task1',
-        title: 'An item 1'
-      },
-      {
-        id: 'task2',
-        title: 'An item 2'
-      },
-      {
-        id: 'task3',
-        title: 'An item 3'
-      },
-    ],
-    editTodo: {}
-  }
+const ListTodo = () => {
+  const [listTodo, setListTodo] = useState([
+    {
+      id: 'task1',
+      title: 'An item 1'
+    },
+    {
+      id: 'task2',
+      title: 'An item 2'
+    },
+    {
+      id: 'task3',
+      title: 'An item 3'
+    },
+  ]);
 
-  handleAddTask = (task) => {
-    this.setState({
-      //ES6 Spread Operator
-      listTodo: [...this.state.listTodo, task]
-    });
+  const [editTodo, setEditTodo] = useState({})
 
-    const notify = () => toast.success('Add todo succeed!');
-    notify();
-  }
-
-  handleDeleteTask = (task) => {
-    //Option 1
-    // this.setState(prevState => ({
-    //   listTodo: prevState.listTodo.filter(item => item.id!== task)
-    // }));
-
-    //Option 2
-    let currentTask = this.state.listTodo;
+  const handleDeleteTask = (task) => {
+    let currentTask = listTodo;
     currentTask = currentTask.filter(item => item.id !== task);
-    this.setState({
-      listTodo: currentTask
-    });
+    setListTodo(currentTask);
 
     const notify = () => toast.success('Delete succeed!');
     notify();
   }
 
-  handleEditTask = (task) => {
-    let { listTodo, editTodo } = this.state;
+  const handleAddTask = (task) => {
+    setListTodo([...listTodo, task]);
+
+    const notify = () => toast.success('Add todo succeed!');
+    notify();
+  }
+
+  const handleEditChange = (e) => {
+    //Không edit trực tiếp mà tạo bản copy rồi edit
+    let editTodoCopy = { ...editTodo };
+    editTodoCopy.title = e.target.value;
+
+    setEditTodo(editTodoCopy);
+  }
+
+  const handleEditTask = (task) => {
     let isEmptyObject = Object.keys(editTodo).length === 0;
 
     //check case Update
@@ -62,10 +57,8 @@ class ListTodo extends React.Component {
       //Update object's name property.
       listTodoCopy[objIndex].title = editTodo.title;
 
-      this.setState({
-        listTodo: listTodoCopy,
-        editTodo: {}
-      });
+      setListTodo(listTodoCopy);
+      setEditTodo({});
 
       const notify = () => toast.success('Update succeed!');
       notify();
@@ -73,77 +66,61 @@ class ListTodo extends React.Component {
     }
 
     //Case Edit
-    this.setState({
-      editTodo: task,
-    });
+    setEditTodo(task);
   }
 
-  handleEditChange = (e) => {
-    //Không edit trực tiếp mà tạo bản copy rồi edit
-    let editTodoCopy = { ...this.state.editTodo };
-    editTodoCopy.title = e.target.value;
+  let isEmptyObject = Object.keys(editTodo).length === 0;
+  return (
+    <>
+      <p>
+        Convert <code>Class component to Function component</code> TODO app
+      </p>
+      <div className="content">
+        <AddTodo
+          onHandleAddTask={handleAddTask}
+        />
 
-    this.setState({
-      editTodo: editTodoCopy
-    })
-  }
+        <ul className="list-group">
+          {
+            listTodo && listTodo.length > 0 &&
+            listTodo.map((todo) => {
+              return (
+                <li className="list-group-item d-flex justify-content-between" key={todo.id}>
+                  {
+                    isEmptyObject ?
+                      <span>{todo.title}</span>
+                      :
+                      <>
+                        {
+                          todo.id === editTodo.id ?
+                            <span>
+                              <input type="text" value={editTodo.title} onChange={(e) => handleEditChange(e)} />
+                            </span>
+                            :
+                            <span>{todo.title}</span>
+                        }
+                      </>
+                  }
 
-  render() {
-    let { listTodo, editTodo } = this.state;
-    let isEmptyObject = Object.keys(editTodo).length === 0;
+                  <div className="d-flex gap-3">
+                    <button className="btn btn-info mr-3" type="button" onClick={(e) => handleEditTask(todo)} >
+                      {isEmptyObject === false && todo.id === editTodo.id ? 'Update' : 'Edit'}
+                    </button>
+                    <button className="btn btn-danger" type="button" onClick={(e) => handleDeleteTask(todo.id)}>Delete</button>
+                  </div>
+                </li>
+              )
+            })
+          }
 
-    return (
-      <>
-        <p>
-          Convert <code>Class component to Function component</code> TODO app
-        </p>
-        <div className="content">
-          <AddTodo
-            onHandleAddTask={this.handleAddTask}
-          />
-
-          <ul className="list-group">
-            {
-              listTodo && listTodo.length > 0 &&
-              listTodo.map((todo) => {
-                return (
-                  <li className="list-group-item d-flex justify-content-between" key={todo.id}>
-                    {
-                      isEmptyObject ?
-                        <span>{todo.title}</span>
-                        :
-                        <>
-                          {
-                            todo.id === editTodo.id ?
-                              <span>
-                                <input type="text" value={editTodo.title} onChange={(e) => this.handleEditChange(e)} />
-                              </span>
-                              :
-                              <span>{todo.title}</span>
-                          }
-                        </>
-                    }
-
-                    <div className="d-flex gap-3">
-                      <button className="btn btn-info mr-3" type="button" onClick={(e) => this.handleEditTask(todo)} >
-                        {isEmptyObject === false && todo.id === editTodo.id ? 'Update' : 'Edit'}
-                      </button>
-                      <button className="btn btn-danger" type="button" onClick={(e) => this.handleDeleteTask(todo.id)}>Delete</button>
-                    </div>
-                  </li>
-                )
-              })
-            }
-
-            {
-              listTodo && listTodo.length === 0 &&
-              <h1>Task empty</h1>
-            }
-          </ul>
-        </div>
-      </>
-    )
-  }
+          {
+            listTodo && listTodo.length === 0 &&
+            <h1>Task empty</h1>
+          }
+        </ul>
+      </div>
+    </>
+  )
 }
 
 export default ListTodo;
