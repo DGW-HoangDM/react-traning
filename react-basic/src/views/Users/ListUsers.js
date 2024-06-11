@@ -1,8 +1,10 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {
   Link
 } from "react-router-dom";
+
+import instance from '../../utils/axiosCustomize';
 
 class ListUsers extends React.Component {
   state = {
@@ -10,7 +12,8 @@ class ListUsers extends React.Component {
   }
 
   async componentDidMount() {
-    let res = await axios.get('https://reqres.in/api/users?page=1');
+    let res = await instance.get('api/users?page=1');
+    // let res = await axios.get('https://reqres.in/api/users?page=1');
     this.setState({
       listUsers: res && res.data && res.data.data ? res.data.data : []
     })
