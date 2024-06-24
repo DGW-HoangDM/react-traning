@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AddTodo from './AddTodo';
 import { toast } from 'react-toastify';
 
 const ListTodo = () => {
-  const [listTodo, setListTodo] = useState([
-    {
-      id: 'task1',
-      title: 'An item 1'
-    },
-    {
-      id: 'task2',
-      title: 'An item 2'
-    },
-    {
-      id: 'task3',
-      title: 'An item 3'
-    },
-  ]);
+  // Init state from localStorage
+  const [listTodo, setListTodo] = useState(() => {
+    const savedTodos = localStorage.getItem('todos');
+    return savedTodos ? JSON.parse(savedTodos) : [
+      { id: 'task1', title: 'An item 1' },
+      { id: 'task2', title: 'An item 2' },
+      { id: 'task3', title: 'An item 3' },
+    ];
+  });
 
-  const [editTodo, setEditTodo] = useState({})
+  const [editTodo, setEditTodo] = useState({});
+
+  // Async listTodo with localStorage when listTodo changes
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(listTodo));
+  }, [listTodo]);
 
   const handleDeleteTask = (task) => {
     let currentTask = listTodo;
@@ -42,6 +42,9 @@ const ListTodo = () => {
     editTodoCopy.title = e.target.value;
 
     setEditTodo(editTodoCopy);
+
+    //Option 2
+    // setEditTodo({ ...editTodo, title: e.target.value });
   }
 
   const handleEditTask = (task) => {
